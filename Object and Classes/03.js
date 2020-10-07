@@ -9,22 +9,41 @@ function solve(data) {
 
         if (allFruits.hasOwnProperty(fruitName)) {
             allFruits[fruitName] += Number(quantity);
-        }
-        else {
+
+            if (allFruits[fruitName] >= 1000) {
+
+                if (!bottles.hasOwnProperty(fruitName)) {
+                    bottles[fruitName] = 0;
+                }
+
+                bottles[fruitName] += Math.floor(allFruits[fruitName] / 1000);
+                allFruits[fruitName] %= 1000;
+            }
+        } else {
             allFruits[fruitName] = Number(quantity);
+
+            if (allFruits[fruitName] >= 1000) {
+
+                if (!bottles.hasOwnProperty(fruitName)) {
+                    bottles[fruitName] = 0;
+                }
+
+                bottles[fruitName] += Math.floor(allFruits[fruitName] / 1000);
+                allFruits[fruitName] %= 1000;
+            }
         }
 
 
     }
     // Produce bottles
-    for (const key of Object.keys(allFruits)) {
-        let currentQuantity = Number(allFruits[key]);
+    // for (const key of Object.keys(allFruits)) {
+    //     let currentQuantity = Number(allFruits[key]);
 
-        if (currentQuantity >= 1000) {
-            let countBottles = Math.floor(currentQuantity / 1000);
-            bottles[key] = countBottles;
-        }
-    }
+    //     if (currentQuantity >= 1000) {
+    //         let countBottles = Math.floor(currentQuantity / 1000);
+    //         bottles[key] = countBottles;
+    //     }
+    // }
 
     let result = '';
 
@@ -41,14 +60,16 @@ let test1 = ['Orange => 2000',
     'Peach => 1432',
     'Banana => 450',
     'Peach => 600',
-    'Strawberry => 549'];
+    'Strawberry => 549'
+];
 
 let test2 = ['Kiwi => 234',
     'Pear => 2345',
     'Watermelon => 3456',
     'Kiwi => 4567',
     'Pear => 5678',
-    'Watermelon => 6789'];
+    'Watermelon => 6789'
+];
 
 
 console.log(solve(test2));
