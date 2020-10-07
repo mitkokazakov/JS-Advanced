@@ -1,6 +1,6 @@
-function solve(data){
+function solve(data) {
 
-    
+
 
     let heroRespository = [];
 
@@ -9,7 +9,7 @@ function solve(data){
         let currentInput = data[i].split(' / ');
         let heroName = currentInput[0];
         let heroLevel = Number(currentInput[1]);
-        let heroItems = currentInput[2].split(', ');
+        let heroItems = currentInput[2] ? currentInput[2].split(', ') : [];
 
         let hero = {
             name: '',
@@ -22,17 +22,17 @@ function solve(data){
         hero.items = heroItems;
 
         heroRespository.push(hero);
-        
+
     }
 
-    
+
 
     return JSON.stringify(heroRespository);
 }
 
-let test1 = 
-['Isacc / 25 / Apple, GravityGun',
-'Derek / 12 / BarrelVest, DestructionSword',
-'Hes / 1 / Desolator, Sentinel, Antara'];
+let test1 = ['Isacc / 25 / Apple, GravityGun',
+    'Derek / 12 / BarrelVest, DestructionSword',
+    'Hes / 1 / Desolator, Sentinel, Antara'
+];
 
 console.log(solve(test1));;
